@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5f84a521676dba439ba67be5"},"email":"admin@gmail.com","password":"123456","role":"admin","full_name":"Administrator"}
+{"_id":{"$oid":"5fa3a9b19c0628354039fd6d"},"email":"nguyenvana@gmail.com","password":"123456","role":"member","full_name":"Nguyễn Văn A"}
+{"_id":{"$oid":"5fa43492ceb043cc721e41b5"},"email":"nguyenvanb@gmail.com","password":"123456","role":"member","full_name":"Nguyễn Văn B"}
+{"_id":{"$oid":"5fa434a1ceb043cc721e41c4"},"email":"nguyenvanc@gmail.com","password":"123456","role":"member","full_name":"Nguyễn Văn C"}
+{"_id":{"$oid":"5fa434aeceb043cc721e41ce"},"email":"nguyenvand@gmail.com","password":"123456","role":"member","full_name":"Nguyễn Văn D"}
+{"_id":{"$oid":"5fa434bfceb043cc721e41d4"},"email":"nguyenvanf@gmail.com","password":"123456","role":"member","full_name":"Nguyễn Văn F"}
