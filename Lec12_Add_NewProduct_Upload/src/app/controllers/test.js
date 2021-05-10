@@ -95,7 +95,12 @@ const fileUpload = (req, res) => {
 
   // renameSync nhận 2 tham số: 1 file nằm đâu(file nam o duong dan hien tai), 2 muốn đi tới đâu
   fs.renameSync(
-    file.path,
+    file.path, // lay duong dan cua file ma ta muon di chuyen
+    /* 
+      di chuyen toi thu muc ma muon toi. cơ chế giống cmd-line (cd đến đâu chạy đến đó), 
+      nó chạy tại đâu phụ thuộc và đường dẫn mà mình viết (không cần phải sử dụng __dirname), tại đây là bắt đầu chạy từ src->products
+      - file.originalname: laf tên của file đã upload vào thư mục products
+    */
     path.resolve("src/public/images/products", file.originalname)
   );
 
