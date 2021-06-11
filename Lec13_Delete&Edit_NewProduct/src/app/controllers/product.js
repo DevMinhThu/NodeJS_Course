@@ -100,10 +100,68 @@ const EditProduct = async (req, res) => {
   const id = req.params.id;
   const product = await ProductModel.findById(id);
 
+  console.log(product);
+
   res.render("admin/product/edit_product", {
     categories: categories,
     product: product,
   });
+};
+
+const update = async (req, res) => {
+  const id = req.params.id;
+
+  // req.body: la cu phap cua multer, kp cua bodyparser
+  const body = req.body; // lay thong tin form, lam viec voi form. Khong lam viec voi file
+  const file = req.file; // lay thong tin file upload
+
+  // tao new product object luu lai cac gia tri thay doi tai form
+  const product = {
+    description: body.description,
+    cat_id: body.cat_id,
+    price: body.price,
+    status: body.status,
+    featured: body.featured === "on",
+    promotion: body.promotion,
+    warranty: body.warranty,
+    accessories: body.accessories,
+    is_stock: body.is_stock,
+    name: body.name,
+    slug: slug(body.name),
+  };
+
+  /* 
+  - Check upload file
+  - Neu ton tai file upload thi thuc thi.
+  */
+  if (file) {
+    /* Step 1:
+    - tao variable thumbnail: luu lai img upload
+    - img luu tru trong public/images/product ==> can luu anh upload tai "product/" + file.originalname
+    - file.originalname: chinh la lay ten img ma minh upload
+    */
+    const thumbnail = "products/" + file.originalname;
+
+    /* Step 2:
+    - Them thuoc tinh thumbnail vao product object
+    - Cu phap: name_Object["key"] = value.
+    */
+    product["thumbnail"] = thumbnail;
+
+    /* Step 3:
+    - Sau khi upload img len file temp. Ta can phai di chuyen img upload ve dung folder dinh truoc.
+    - renameSync: nhận vào 2 tham số 
+        - 1. đường dẫn của file hiện tại
+        - 2. đường dẫn mình muốn di chuyển tới
+      - path.resolve: giải quyết vấn đề tìm kiếm đến đường dẫn lưu trữ file dễ hơn (giống cơ chế của terminal, đi vào từng cấp thư mục)
+    */
+    fs.renameSync(file.path, path.resolve("src/public/images", thumbnail));
+  }
+
+  // update product
+  await ProductModel.updateOne({ _id: id }, { $set: product });
+
+  res.redirect("/admin/products");
 };
 
 const DeleteProduct = async (req, res) => {
@@ -120,4 +178,5 @@ module.exports = {
   edit: EditProduct,
   delete: DeleteProduct,
   store: store,
+  update: update,
 };

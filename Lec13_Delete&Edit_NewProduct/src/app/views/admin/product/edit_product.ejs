@@ -36,7 +36,8 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="col-md-6">
-                                    <form role="form" method="post" enctype="multipart/form-data">
+                                    <form action="/admin/products/update/<%=product._id%>" role="form" method="post"
+                                        enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Tên sản phẩm</label>
                                             <input type="text" name="name" required class="form-control"
@@ -73,7 +74,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Ảnh sản phẩm</label>
-                                        <input type="file" name="thumbnail" required>
+                                        <input type="file" name="thumbnail">
                                         <br>
                                         <div>
                                             <img src="/static/images/<%=product.thumbnail%>">
@@ -83,8 +84,11 @@
                                         <label>Danh mục</label>
                                         <select name="cat_id" class="form-control">
                                             <%for(x in categories){%>
-                                                <option selected value=1>
-                                                    <%=categories[x].title%>
+                                                <!-- _id: nếu bỏ dấu _ thì sẽ hiểu là sử dụng tk _id nhưng ở dạng string chứ kp ở dạng opject để so sánh với cat_id  -->
+                                                <option <% if(product.cat_id==categories[x].id){%>selected<%}%>
+                                                        value=<%=categories[x]._id%>
+                                                            >
+                                                            <%= categories[x].title%>
                                                 </option>
                                                 <%}%>
                                         </select>
@@ -102,8 +106,8 @@
                                         <label>Sản phẩm nổi bật</label>
                                         <div class="checkbox">
                                             <label>
-                                                <input <% if(product.featured){%>checked<%}%> name="featured"
-                                                    type="checkbox" value=1>Nổi bật
+                                                <input name="featured" type="checkbox" <% if(product.featured){%>checked
+                                                <%}%> value="on">Nổi bật
                                             </label>
                                         </div>
                                     </div>
