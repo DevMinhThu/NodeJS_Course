@@ -77,7 +77,13 @@ const store = async (req, res) => {
 
     product["thumbnail"] = thumbnail; // them 1 truong vao trong object product, name_Object["key"] = value. Theem truong thumnail voi gia tri la thumnail
 
-    // chuyen file img nhan duoc vao thu muc mong muon
+    /* 
+      - chuyen file img nhan duoc vao thu muc mong muon
+      - renameSync: nhận vào 2 tham số 
+        - 1. đường dẫn của file hiện tại
+        - 2. đường dẫn mình muốn di chuyển tới
+      - resolve: giải quyết vấn đề tìm kiếm đến đường dẫn lưu trữ file dễ hơn (giống cơ chế của terminal, đi vào từng cấp thư mục)
+    */
     fs.renameSync(file.path, path.resolve("src/public/images", thumbnail));
   }
 
