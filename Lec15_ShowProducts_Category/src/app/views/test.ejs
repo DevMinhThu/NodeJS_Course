@@ -1,0 +1,11 @@
+<!-- không được khai báo biên trong view, không được giải thuật tính toán trong view. Nếu cần tính toán thì xử lý bên controller -->
+
+<!-- them header -->
+<%- include('header_test.ejs') %>
+    <h1>Ejs Engine <%= data.a %>
+    </h1>
+    <form method="post">
+        <input type="text" name="emailForm" />
+        <input type="text" name="passForm" />
+        <input type="submit" name="sbm" value="Log In" />
+    </form>

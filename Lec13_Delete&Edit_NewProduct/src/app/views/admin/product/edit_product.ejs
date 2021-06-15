@@ -98,7 +98,7 @@
                                         <label>Trạng thái</label>
                                         <select name="is_stock" class="form-control">
                                             <option <% if(product.is_stock){%>selected<%}%> value=1>Còn hàng</option>
-                                            <option <% if(!product.is_stock){%>selected<%}%> value=2>Hết hàng</option>
+                                            <option <% if(!product.is_stock){%>selected<%}%> value=0>Hết hàng</option>
                                         </select>
                                     </div>
 
