@@ -6,6 +6,9 @@ const session = require("express-session");
 // khoi tao bien app gan voi express()
 const app = express();
 
+// middleware share
+app.use(require("../app/middlewares/share"));
+
 // cấu hình
 // cấu hình key "views" và đường dẫn tới folder views
 // bắt đầu từ thư mục "views"
