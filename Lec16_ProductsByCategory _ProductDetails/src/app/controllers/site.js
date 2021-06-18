@@ -56,8 +56,12 @@ const category = async (req, res) => {
   res.render("site/category", { products, totals, title });
 };
 
-const product = (req, res) => {
-  res.render("site/product");
+const product = async (req, res) => {
+  const id = req.params.id; // id của mỗi sản phẩm
+
+  const product = await ProductModel.findById(id);
+
+  res.render("site/product", { product });
 };
 
 const search = (req, res) => {
