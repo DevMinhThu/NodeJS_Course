@@ -18,6 +18,8 @@ app.use("/static", express.static(config.get("app").static_folder));
 // doc data tu form voi 2 loai data la text, json
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// config router in app
 app.use(router);
 
 // export app để file www.js dùng
