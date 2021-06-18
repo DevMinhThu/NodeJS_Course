@@ -3,7 +3,7 @@
         <ul>
             <!-- categories được sinh ra bởi res.locals.categories -->
             <%for(let category of categories){%>
-                <li class="menu-item"><a href="#">
+                <li class="menu-item"><a href="/category-<%= category.slug%>.<%= category._id%>">
                         <%=category.title%>
                     </a></li>
                 <%}%>

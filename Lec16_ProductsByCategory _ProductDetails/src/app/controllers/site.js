@@ -33,8 +33,27 @@ const home = async (req, res) => {
   });
 };
 
-const category = (req, res) => {
-  res.render("site/category");
+const category = async (req, res) => {
+  /* 
+  - lấy lại tham số slug và id trên url
+  - Cú pháp: req.params
+  */
+  const slug = req.params.slug;
+  const id = req.params.id; // id cua category
+
+  // lấy ra tất cả sản phẩm có id(cat_id) bằng id của danh mục sản phẩm đó
+  const products = await ProductModel.find({
+    cat_id: id,
+  }).sort({ _id: -1 });
+
+  // lấy ra tổng số sản phẩm của 1 danh mục
+  const totals = products.length;
+
+  // lấy ra tên danh mục
+  const category = await CategoryModel.findById(id);
+  const title = category.title;
+
+  res.render("site/category", { products, totals, title });
 };
 
 const product = (req, res) => {

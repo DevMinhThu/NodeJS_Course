@@ -72,7 +72,7 @@ router.post("/form", (req, res) => {
 
 /* ============== router SITE-FRONTEND============= */
 router.get("/", SiteController.home);
-router.get("/category", SiteController.category);
+router.get("/category-:slug.:id", SiteController.category);
 router.get("/product", SiteController.product);
 router.get("/search", SiteController.search);
 router.get("/cart", SiteController.cart);
