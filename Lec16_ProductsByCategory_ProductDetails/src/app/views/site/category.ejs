@@ -41,11 +41,31 @@
 
                             <div id="pagination">
                                 <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#">Trang trước</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Trang sau</a></li>
+                                    <%if(page>1){%>
+                                        <li class="page-item"><a class="page-link"
+                                                href="/category-<%= slug%>.<%= id%>/?page=<%= page-1%>">Trang trước</a>
+                                        </li>
+                                        <%}%>
+                                            <%for(let x in pages){%>
+                                                <%if(pages[x]!=='...'){%>
+                                                    <li class="page-item <%if(page === pages[x]){%>active<%}%>"><a
+                                                            class="page-link"
+                                                            href="/category-<%= slug%>.<%= id%>/?page=<%= pages[x]%>">
+                                                            <%= pages[x]%>
+                                                        </a></li>
+                                                    <%}else{%>
+                                                        <li class="page-item <%if(page === pages[x]){%>active<%}%>"><a
+                                                                class="page-link" onclick="return false"
+                                                                href="/category-<%= slug%>.<%= id%>/?page=<%= pages[x]%>">
+                                                                <%= pages[x]%>
+                                                            </a></li>
+                                                        <%}%>
+                                                            <%}%>
+                                                                <%if(page<totalPage){%>
+                                                                    <li class="page-item"><a class="page-link"
+                                                                            href="/category-<%= slug%>.<%= id%>/?page=<%= page+1%>">Trang
+                                                                            sau</a></li>
+                                                                    <%}%>
                                 </ul>
                             </div>
 

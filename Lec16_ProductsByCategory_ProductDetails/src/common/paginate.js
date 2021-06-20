@@ -3,9 +3,6 @@ module.exports = (page, totalPage, delta = 2) => {
   // mảng chứa số trang
   const pages = [];
 
-  // mảng chứa số trang va dau ...
-  // const pagesWithDot = [];
-
   const left = page - delta;
   const right = page + delta;
 
@@ -17,8 +14,6 @@ module.exports = (page, totalPage, delta = 2) => {
       pages.push("...");
     }
   }
-
-  // push ... vao mang pages
 
   return pages;
 };

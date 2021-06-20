@@ -1,5 +1,6 @@
 const ProductModel = require("../models/product");
 const CategoryModel = require("../models/category");
+const paginate = require("../../common/paginate");
 
 const home = async (req, res) => {
   /* GET PRODUCT LATEST
@@ -42,18 +43,51 @@ const category = async (req, res) => {
   const id = req.params.id; // id cua category
 
   // lấy ra tất cả sản phẩm có id(cat_id) bằng id của danh mục sản phẩm đó
-  const products = await ProductModel.find({
+  const productsCategory = await ProductModel.find({
     cat_id: id,
   }).sort({ _id: -1 });
 
   // lấy ra tổng số sản phẩm của 1 danh mục
-  const totals = products.length;
+  const totals = productsCategory.length;
 
   // lấy ra tên danh mục
   const category = await CategoryModel.findById(id);
   const title = category.title;
 
-  res.render("site/category", { products, totals, title });
+  /* === pagination === */
+  // lấy lại số trang hiện tại trên URL, nếu không thì là trang 1
+  // Phương thức parseInt() sẽ phân tích một chuỗi và trả về một số nguyên nếu có thể.
+  const page = parseInt(req.query.page) || 1;
+
+  // số document trên 1 trang
+  const limit = 9;
+
+  // số document sẽ bị bỏ qua
+  const skip = page * limit - limit;
+
+  // tổnng số document
+  const total = await ProductModel.find({ cat_id: id }).countDocuments();
+
+  // tính tổng số trang (sẽ bằng tổng số document / số document trên 1 trang)
+  const totalPage = Math.ceil(total / limit);
+
+  // lấy ra số document
+  const products = await ProductModel.find({ cat_id: id })
+    .skip(skip)
+    .limit(limit)
+    .sort({ _id: -1 });
+
+  res.render("site/category", {
+    products,
+    totals,
+    title,
+    slug,
+    id,
+    pages: paginate(page, totalPage),
+    page,
+    skip,
+    totalPage,
+  });
 };
 
 const product = async (req, res) => {
