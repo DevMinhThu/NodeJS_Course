@@ -5,6 +5,7 @@ const Login = (req, res) => {
 };
 
 const postLogin = async (req, res) => {
+  // body là cú pháp của body-parser
   const email = req.body.mail;
   const pass = req.body.pass;
   let error;
