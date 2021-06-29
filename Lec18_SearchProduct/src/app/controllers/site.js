@@ -127,8 +127,6 @@ const search = async (req, res) => {
     filter.$text = { $search: keyword };
   }
 
-  // const products = await ProductModel.find(filter);
-
   // === paginate ===
   const page = parseInt(req.query.page) || 1;
   const limit = 9;
