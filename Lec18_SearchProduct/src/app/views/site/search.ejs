@@ -44,25 +44,27 @@
                                 <ul class="pagination">
                                     <%if(page>1){%>
                                         <li class="page-item"><a class="page-link"
-                                                href="/search/?page=<%=page-1%>">Trang trước</a></li>
+                                                href="/search?keywords=<%= keyword%>&page=<%= page-1%>">Trang trước</a>
+                                        </li>
                                         <%}%>
                                             <%for(x in pages){%>
                                                 <%if(pages[x]!=='...'){%>
                                                     <li class="page-item <%=pages[x]===page ? 'active':''%>"><a
-                                                            class="page-link" href="/search/?page=<%=pages[x]%>">
+                                                            class="page-link"
+                                                            href="/search?keywords=<%= keyword%>&page=<%= pages[x]%>">
                                                             <%=pages[x]%>
                                                         </a></li>
                                                     <%} else {%>
                                                         <li class="page-item"><a class="page-link"
                                                                 onclick="return false"
-                                                                href="/search/?page=<%=pages[x]%>">
+                                                                href="/search?keywords=<%= keyword%>&page=<%= pages[x]%>">
                                                                 <%=pages[x]%>
                                                             </a></li>
                                                         <%}%>
                                                             <%}%>
                                                                 <%if(page<totalPage){%>
                                                                     <li class="page-item"><a class="page-link"
-                                                                            href="/search/?page=<%=page+1%>">Trang
+                                                                            href="/search?keywords=<%= keyword%>&page=<%= page+1%>">Trang
                                                                             sau</a>
                                                                     </li>
                                                                     <%}%>
