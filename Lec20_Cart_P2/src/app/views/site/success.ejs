@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('./layout/head.ejs', {title: "Order Success" })%>
+        <link rel="stylesheet" href="/static/site/css/success.css">
+</head>
+
+<body>
+
+    <!--	Header	-->
+    <%- include('./layout/header.ejs')%>
+        <!--	End Header	-->
+
+        <!--	Body	-->
+        <div id="body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <%- include("./layout/menu.ejs")%>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                        <!--	Slider	-->
+                        <%- include("./layout/slide.ejs")%>
+                            <!--	End Slider	-->
+
+                            <!--	Order Success	-->
+                            <div id="order-success">
+                                <div class="row">
+                                    <div id="order-success-img" class="col-lg-3 col-md-3 col-sm-12"></div>
+                                    <div id="order-success-txt" class="col-lg-9 col-md-9 col-sm-12">
+                                        <h3>bạn đã đặt hàng thành công !</h3>
+                                        <p>Vui lòng kiểm tra email để xem lại thông tin đơn hàng của mình.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--	End Order Success	-->
+
+                    </div>
+
+                    <%- include("./layout/sidebar.ejs")%>
+                </div>
+            </div>
+        </div>
+        <!--	End Body	-->
+
+        <!-- footer -->
+        <%- include("./layout/footer.ejs")%>
+
+</body>
+
+</html>

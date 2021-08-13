@@ -1,0 +1,9 @@
+<div class="product-item card text-center">
+    <a href="/product-<%= product.slug%>.<%= product._id%>"><img src="/static/images/<%= product.thumbnail%>"></a>
+    <h4><a href="/product-<%= product.slug%>.<%= product._id%>">
+            <%= product.name%>
+        </a></h4>
+    <p>Giá Bán: <span>
+            <%= product.price%>đ
+        </span></p>
+</div>
