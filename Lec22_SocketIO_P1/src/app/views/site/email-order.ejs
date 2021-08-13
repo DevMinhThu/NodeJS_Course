@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <title>Order</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+
+    <p>
+        <b>Khách hàng:</b>
+        <%=name%><br>
+            <b>Điện thoại:</b>
+            <%=phone%><br>
+                <b>Địa chỉ:</b>
+                <%=add%><br>
+    </p>
+
+    <table border="1" cellspacing="0" cellpadding="10" bordercolor="#305eb3" width="100%">
+        <tr bgcolor="#305eb3">
+            <td width="70%"><b>
+                    <font color="#FFFFFF">Sản phẩm</font>
+                </b></td>
+            <td width="10%"><b>
+                    <font color="#FFFFFF">Số lượng</font>
+                </b></td>
+            <td width="20%"><b>
+                    <font color="#FFFFFF">Tổng tiền</font>
+                </b></td>
+        </tr>
+        <% for(let item of items){%>
+            <% totalPrice +=item.qty*item.price%>
+                <tr>
+                    <td width="70%">
+                        <%=item.name%>
+                    </td>
+                    <td width="10%">
+                        <%=item.qty%>
+                    </td>
+                    <td width="20%">
+                        <%= new Intl.NumberFormat("vi-VN",{style: "currency" ,currency: "VND" }).format(item.qty *
+                            item.price)%>đ
+                    </td>
+                </tr>
+                <% }%>
+                    <tr>
+                        <td colspan="2" width="70%"></td>
+                        <td width="20%"><b>
+                                <font color="#FF0000">
+                                    <%= new Intl.NumberFormat("vi-VN", {style: "currency" , currency: "VND"
+                                        }).format(totalPrice)%>đ
+                                </font>
+                            </b></td>
+                    </tr>
+    </table>
+
+    <p>
+        Cám ơn quý khách đã mua hàng tại Shop của chúng tôi, bộ phận giao hàng sẽ liên hệ với quý khách để xác nhận sau
+        5 phút kể từ khi đặt hàng thành công và chuyển hàng đến quý khách chậm nhất sau 24 tiếng.
+    </p>
+
+</body>
+
+</html>

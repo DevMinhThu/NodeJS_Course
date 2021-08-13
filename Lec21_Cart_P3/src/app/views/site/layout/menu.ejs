@@ -1,0 +1,17 @@
+<nav>
+    <div id="menu" class="collapse navbar-collapse">
+        <ul>
+            <!-- categories được sinh ra bởi res.locals -->
+            <%for(category of categories){%>
+                <!-- 
+                    - Khi bấm vào menu, sẽ đẩy lên URL 2 giá trị là slug và id của danh mục đó 
+                    - Sau đó bên Router phải nhận lại 2 giá trị này.
+                    - Bằng cú pháp :slug, :id
+                -->
+                <li class="menu-item"><a href="/category-<%= category.slug%>.<%= category._id%>">
+                        <%=category.title%>
+                    </a></li>
+                <%}%>
+        </ul>
+    </div>
+</nav>
