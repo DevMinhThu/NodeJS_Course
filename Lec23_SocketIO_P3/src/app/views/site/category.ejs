@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('./layout/head.ejs', {title: "Category" })%>
+        <link rel="stylesheet" href="/static/site/css/category.css">
+</head>
+
+<body>
+
+    <!--	Header	-->
+    <%- include('./layout/header.ejs')%>
+        <!--	End Header	-->
+
+        <!--	Body	-->
+        <div id="body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <%- include("./layout/menu")%>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                        <!--	Slider	-->
+                        <%- include("./layout/slide.ejs")%>
+                            <!--	End Slider	-->
+
+                            <!--	List Product	-->
+                            <div class="products">
+                                <h3>
+                                    <%= title%> (hiện có <%= totals%> sản phẩm)
+                                </h3>
+                                <div class="product-list card-deck">
+                                    <%for(let product of products){%>
+                                        <%- include("./components/product-item.ejs", {product})%>
+                                            <%}%>
+                                </div>
+                            </div>
+                            <!--	End List Product	-->
+
+                            <div id="pagination">
+                                <ul class="pagination">
+                                    <%if(page>1){%>
+                                        <li class="page-item"><a class="page-link"
+                                                href="/category-<%= slug%>.<%= id%>/?page=<%= page-1%>">Trang
+                                                trước</a></li>
+                                        <%}%>
+                                            <%for(x in pages){%>
+                                                <%if(pages[x]!=='...'){%>
+                                                    <li class="page-item <%=pages[x]===page ? 'active':''%>"><a
+                                                            class="page-link"
+                                                            href="/category-<%= slug%>.<%= id%>/?page=<%= pages[x]%>">
+                                                            <%=pages[x]%>
+                                                        </a></li>
+                                                    <%}else{%>
+                                                        <li class="page-item"><a class="page-link"
+                                                                onclick="return false"
+                                                                href="/category-<%= slug%>.<%= id%>/?page=<%= pages[x]%>">
+                                                                <%=pages[x]%>
+                                                            </a></li>
+                                                        <%}%>
+                                                            <%}%>
+                                                                <%if(page<totalPages){%>
+                                                                    <li class="page-item"><a class="page-link"
+                                                                            href="/category-<%= slug%>.<%= id%>/?page=<%= page+1%>">Trang
+                                                                            sau</a></li>
+                                                                    <%}%>
+                                </ul>
+                            </div>
+
+                    </div>
+
+                    <%- include("./layout/sidebar.ejs")%>
+                </div>
+            </div>
+        </div>
+        <!--	End Body	-->
+
+        <!-- footer -->
+        <%- include("./layout/footer.ejs")%>
+
+</body>
+
+</html>

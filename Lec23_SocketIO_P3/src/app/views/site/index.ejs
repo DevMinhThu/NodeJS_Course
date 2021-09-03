@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('./layout/head.ejs', {title: "Home" })%>
+</head>
+
+<body>
+
+    <!--	Header	-->
+    <%- include('./layout/header.ejs')%>
+        <!--	End Header	-->
+
+        <!--	Body	-->
+        <div id="body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <%- include("./layout/menu.ejs")%>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                        <!--	Slider	-->
+                        <%- include("./layout/slide.ejs")%>
+                            <!--	End Slider	-->
+
+                            <!--	Feature Product	-->
+                            <div class="products">
+                                <h3>Sản phẩm nổi bật</h3>
+                                <div class="product-list card-deck">
+                                    <%for(let product of FeaturedProducts){%>
+                                        <%- include("components/product-item.ejs", {product})%>
+                                            <%}%>
+                                </div>
+                            </div>
+                            <!--	End Feature Product	-->
+
+
+                            <!--	Latest Product	-->
+                            <div class="products">
+                                <h3>Sản phẩm mới</h3>
+                                <div class="product-list card-deck">
+                                    <%for(let product of LatestProducts){%>
+                                        <!-- sử dụng for/of, lặp qua và lấy giá trị của mảng gán vào biến product -->
+                                        <!-- gọi component hiển thị sản phẩm vào, và truyền giá trị của mỗi product sang cho view component -->
+                                        <%- include("components/product-item.ejs", {product:product})%>
+                                            <%}%>
+                                </div>
+                            </div>
+                            <!--	End Latest Product	-->
+
+                    </div>
+
+                    <%- include("./layout/sidebar.ejs")%>
+                </div>
+            </div>
+        </div>
+        <!--	End Body	-->
+
+        <!-- footer -->
+        <%- include("./layout/footer.ejs")%>
+
+</body>
+
+</html>
